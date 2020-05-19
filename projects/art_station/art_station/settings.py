@@ -76,8 +76,8 @@ WSGI_APPLICATION = 'art_station.wsgi.application'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'art_station',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'art_station_bak',
         'USER': 'scott',
         'PASSWORD': 'tiger',
         'HOST': 'localhost',

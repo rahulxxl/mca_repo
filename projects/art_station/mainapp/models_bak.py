@@ -17,6 +17,7 @@ class Artist(models.Model):
     subscription = models.ForeignKey('Subscription', models.DO_NOTHING, db_column='subscription', blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'artist'
 
 
@@ -26,6 +27,7 @@ class City(models.Model):
     state = models.ForeignKey('State', models.DO_NOTHING, db_column='state', blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'city'
 
 
@@ -34,6 +36,7 @@ class Country(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'country'
 
 
@@ -46,6 +49,7 @@ class ImageInfoArtist(models.Model):
     software = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'image_info_artist'
 
 
@@ -58,6 +62,7 @@ class ImageInfoStudio(models.Model):
     software = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'image_info_studio'
 
 
@@ -66,6 +71,7 @@ class ImageProfile(models.Model):
     image = models.TextField(blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'image_profile'
 
 
@@ -75,6 +81,7 @@ class ImageStore(models.Model):
     thumb_image = models.TextField(blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'image_store'
 
 
@@ -84,6 +91,7 @@ class JobApplication(models.Model):
     artist = models.ForeignKey(Artist, models.DO_NOTHING, db_column='artist', blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'job_application'
 
 
@@ -100,6 +108,7 @@ class JobListing(models.Model):
     additional_info = models.CharField(max_length=1000, blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'job_listing'
 
 
@@ -116,6 +125,7 @@ class Location(models.Model):
     location_long = models.DecimalField(max_digits=19, decimal_places=16, blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'location'
 
 
@@ -125,6 +135,7 @@ class State(models.Model):
     country = models.ForeignKey(Country, models.DO_NOTHING, db_column='country', blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'state'
 
 
@@ -137,6 +148,7 @@ class Studio(models.Model):
     profile_image = models.ForeignKey(ImageProfile, models.DO_NOTHING, db_column='profile_image', blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'studio'
 
 
@@ -146,4 +158,5 @@ class Subscription(models.Model):
     price = models.DecimalField(max_digits=11, decimal_places=2, blank=True, null=True)
 
     class Meta:
+        managed = False
         db_table = 'subscription'
