@@ -147,3 +147,11 @@ class Subscription(models.Model):
 
     class Meta:
         db_table = 'subscription'
+
+class ImageMainStore(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)     # Field name made lowercase.
+    image = models.ImageField( blank=True, null=True)           # upload_to='artist_image'
+    thumb_image = models.ImageField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'image_main_store'

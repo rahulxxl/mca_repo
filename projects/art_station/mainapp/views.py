@@ -10,3 +10,7 @@ def homepage(request):
 
 def redirect_facebook(request):
     return redirect('https://www.facebook.com/')
+
+
+def profilepage(request):
+    return render(request, 'mainapp/profile.html')

@@ -15,6 +15,7 @@ from .models import Location
 from .models import City
 from .models import Country
 from .models import State
+from .models import ImageMainStore
 
 
 admin.site.register(Artist)
@@ -30,3 +31,4 @@ admin.site.register(Location)
 admin.site.register(City)
 admin.site.register(Country)
 admin.site.register(State)
+admin.site.register(ImageMainStore)
