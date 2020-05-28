@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Jamify</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Numans');
+
+        html,
+        body {
+            background-color: beige;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            font-family: 'Numans', sans-serif;
+        }
+
+        .container {
+            height: 100%;
+            align-content: center;
+        }
+
+        .card {
+            height: 370px;
+            margin-top: auto;
+            margin-bottom: auto;
+            width: 400px;
+            background-color: rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .social_icon span {
+            font-size: 60px;
+            margin-left: 10px;
+            color: #FFC312;
+        }
+
+        .social_icon span:hover {
+            color: white;
+            cursor: pointer;
+        }
+
+        .card-header h3 {
+            color: white;
+        }
+
+        .social_icon {
+            position: absolute;
+            right: 20px;
+            top: -45px;
+        }
+
+        .input-group-prepend span {
+            width: 50px;
+            background-color: #FFC312;
+            color: black;
+            border: 0 !important;
+        }
+
+        input:focus {
+            outline: 0 0 0 0 !important;
+            box-shadow: 0 0 0 0 !important;
+
+        }
+
+        .remember {
+            color: white;
+        }
+
+        .remember input {
+            width: 20px;
+            height: 20px;
+            margin-left: 15px;
+            margin-right: 5px;
+        }
+
+        .login_btn {
+            color: black;
+            background-color: #FFC312;
+            width: 100px;
+        }
+
+        .login_btn:hover {
+            color: black;
+            background-color: white;
+        }
+
+        .links {
+            color: white;
+        }
+
+        .links a {
+            margin-left: 4px;
+        }
+    </style>
+
+
+    <!-- Font Awesome CDN -->
+    <!-- For all Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+</head>
+
+<body>
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><i class="fas fa-home"></i> Jamify</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- Place your Navigation here if you wish to -->
+            </ul>
+            <ul class="navbar-nav mr-2">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-user"></i> Artist Login In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- 
+<a href="#" onClick="(function(){
+    var d1 = document.getElementById('myForm').item(1);
+    // var ds1 = d1.parse();
+    alert('fuck This Shit');
+})();">click here</a>
+ -->
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="card my-3 w-50">
+                <div class="card-header">
+                    <h1>Create a Jam</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="card w-50">
+                <div class="card-body">
+                    <form action="{% url 'create_jam' %}" method="POST" id="myForm">
+                        {% csrf_token %}
+                        {{form.non_field_errors}}
+
+                        <div class="form-group row">
+                            {{form.jam_title.errors}}
+                            <label class="col-sm-4 col-form-label"
+                                for="{{from.jam_title.id_for_label}}">{{form.jam_title.label}}</label>
+                            <div class="col-sm-8">
+                                {{form.jam_title}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{form.start_date.errors}}
+                            <label class="col-sm-4 col-form-label"
+                                for="{{from.start_date.id_for_label}}">{{form.start_date.label}}</label>
+                            <div class="col-sm-8">
+                                {{form.start_date}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{form.end_date.errors}}
+                            <label class="col-sm-4 col-form-label"
+                                for="{{from.end_date.id_for_label}}">{{form.end_date.label}}</label>
+                            <div class="col-sm-8">
+                                {{form.end_date}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{form.team_size.errors}}
+                            <label class="col-sm-4 col-form-label"
+                                for="{{from.team_size.id_for_label}}">{{form.team_size.label}}</label>
+                            <div class="col-sm-8">
+                                {{form.team_size}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{form.prize.errors}}
+                            <label class="col-sm-4 col-form-label"
+                                for="{{from.prize.id_for_label}}">{{form.prize.label}}</label>
+                            <div class="col-sm-8">
+                                {{form.prize}}
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                            <div class="col-sm-8">
+                                <a class="btn btn-primary" href="/">Cancel</a>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

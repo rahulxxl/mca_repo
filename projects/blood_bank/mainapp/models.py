@@ -47,14 +47,6 @@ class BloodIssue(models.Model):
         return self.name
 
 
-class IdProof(models.Model):
-    """ The type of ID Proof needed for the Donor Identity"""
-    id = models.AutoField(primary_key=True)  # Field name made lowercase.
-    proof_type = models.CharField(max_length=50, blank=True, null=True)
-
-    def __str__(self):
-        return self.proof_type
-
 class Donor(models.Model):
     """ The Donor who has donated blood to the bank"""
     id = models.AutoField(primary_key=True)  # Field name made lowercase.
@@ -62,8 +54,6 @@ class Donor(models.Model):
     address = models.CharField(max_length=300, blank=True, null=True)
     phone = models.CharField(max_length=10, blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
-    id_proof = models.ForeignKey(IdProof, models.DO_NOTHING, blank=True, null=True)
-    id_number = models.CharField(max_length=30, blank=True, null=True)
     blood_group = models.ForeignKey(BloodGroup, models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
