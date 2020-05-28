@@ -9,6 +9,39 @@ def homepage(request):
     context = {}
     return render(request, 'mainapp/homepage.html', context)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def testView(request):
     # if this is a POST request, means we have some data on our form.
     if request.method == "POST" :

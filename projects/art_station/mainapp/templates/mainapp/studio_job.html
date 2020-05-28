@@ -1,4 +1,3 @@
-{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -11,89 +10,100 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <title>Graphicteria</title>
+
     <!-- Font Awesome CDN -->
     <!-- For all Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
-    <title>Blood Bank</title>
 </head>
 
 <body>
 
-    {% include 'mainapp/navbar.html' %}
-
-    <h1>Hello in Controls</h1>
-
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><i class="fas fa-home"></i> Graphicteria</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- Place your Navigation here if you wish to -->
+            </ul>
+            <ul class="navbar-nav mr-2">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"><i class="fas fa-user"></i>
+                        <!--Artist Login --> </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="card w-50 bg-light">
                 <div class="heading">
-                    <h2 class="card-header">Blood Unit Detail</h2>
+                    <h2 class="card-header">Create Job Listing</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{% url 'controls' %}">
+                    <form action="/studio_job/" method="POST">
                         {% csrf_token %}
-
                         {{form.non_field_errors}}
+
                         <div class="form-group row">
-                            {{form.username.errors}}
+                            {{form.title.errors}}
                             <label class="col-sm-4 col-form-label"
-                                for="{{from.username.id_for_label}}">{{form.username.label}}</label>
-                            <div class="col-sm-6">
-                                {{form.username}}
+                                for="{{from.title.id_for_label}}">{{form.title.label}}</label>
+                            <div class="col-sm-8">
+                                {{form.title}}
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            {{form.password.errors}}
+                            {{form.description.errors}}
                             <label class="col-sm-4 col-form-label"
-                                for="{{from.password.id_for_label}}">{{form.password.label}}</label>
-                            <div class="col-sm-6">
-                                {{form.password}}
+                                for="{{from.description.id_for_label}}">{{form.description.label}}</label>
+                            <div class="col-sm-8">
+                                {{form.description}}
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            {{form.email.errors}}
+                            {{form.experience.errors}}
                             <label class="col-sm-4 col-form-label"
-                                for="{{from.email.id_for_label}}">{{form.email.label}}</label>
-                            <div class="col-sm-6">
-                                {{form.email}}
+                                for="{{from.experience.id_for_label}}">{{form.experience.label}}</label>
+                            <div class="col-sm-8">
+                                {{form.experience}}
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            {{form.address.errors}}
+                            {{form.salary.errors}}
                             <label class="col-sm-4 col-form-label"
-                                for="{{from.username.id_for_label}}">{{form.address.label}}</label>
-                            <div class="col-sm-6">
-                                {{form.address}}
+                                for="{{from.salary.id_for_label}}">{{form.salary.label}}</label>
+                            <div class="col-sm-8">
+                                {{form.salary}}
                             </div>
                         </div>
 
+                        <hr>
                         <div class="form-group row">
-                            {{form.blood_group.errors}}
-                            <label class="col-sm-4 col-form-label"
-                                for="{{from.blood_group.id_for_label}}">{{form.blood_group.label}}</label>
-                            <div class="col-sm-6">
-                                {{form.blood_group}}
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                            <div class="col-sm-8">
+                                <a class="btn btn-primary" href="/studio_home/">Cancel</a>
                             </div>
                         </div>
 
-                        <input type="submit" value="submit">
+
+
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
 
 
-
-    {% block content %}
-
-    {% endblock %}
 
 
 

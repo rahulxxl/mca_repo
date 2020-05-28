@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font Awesome CDN -->
+    <!-- For all Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <title>Blood Bank</title>
+    <style>
+         body {
+            background-color: #ebeff5;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Blood Bank</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'homepage' %}">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Issue Blood</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Accept Blood</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">View Donors</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                        Blood Donation Camps
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Organize New Camp</a>
+                        <a class="dropdown-item" href="#">View Camp</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container my-3">
+        <div class="row justify-content-center">
+            <div class="card w-100">
+                <div class="heading bg-light">
+                    <h2 class="card-header">All Camps Details</h2>
+                </div>
+
+                <div class="card-body">
+                    <table class="table table-hover ">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">A+</th>
+                                <th scope="col">B+</th>
+                                <th scope="col">O+</th>
+                                <th scope="col">AB+</th>
+                                <th scope="col">A-</th>
+                                <th scope="col">B-</th>
+                                <th scope="col">O-</th>
+                                <th scope="col">AB-</th>
+                                <th scope="col">Update</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Ranjit Avenue, Amritsar</th>
+                                <td>12-05-2018</th>
+                                <td>15-05-2018</th>
+                                <td>20</th>
+                                <td>34</th>
+                                <td>40</th>
+                                <td>17</th>
+                                <td>20</th>
+                                <td>34</th>
+                                <td>28</th>
+                                <td>31</th>
+                                <td><a class="btn btn-sm btn-outline-info btn-block" href="#">Update</a></td>
+                                <td><a class="btn btn-sm btn-outline-danger btn-block" href="#">Delete</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Ranjit Avenue, Amritsar</th>
+                                <td>17-08-2018</th>
+                                <td>18-08-2018</th>
+                                <td>25</th>
+                                <td>32</th>
+                                <td>34</th>
+                                <td>15</th>
+                                <td>25</th>
+                                <td>32</th>
+                                <td>24</th>
+                                <td>25</th>
+                                <td><a class="btn btn-sm btn-outline-info btn-block" href="#">Update</a></td>
+                                <td><a class="btn btn-sm btn-outline-danger btn-block" href="#">Delete</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Ranjit Avenue, Amritsar</th>
+                                <td>21-01-2019</th>
+                                <td>23-01-2019</th>
+                                <td>13</th>
+                                <td>33</th>
+                                <td>30</th>
+                                <td>18</th>
+                                <td>13</th>
+                                <td>33</th>
+                                <td>18</th>
+                                <td>15</th>
+                                <td><a class="btn btn-sm btn-outline-info btn-block" href="#">Update</a></td>
+                                <td><a class="btn btn-sm btn-outline-danger btn-block" href="#">Delete</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>Ranjit Avenue, Amritsar</th>
+                                <td>05-03-2019</th>
+                                <td>06-03-2019</th>
+                                <td>17</th>
+                                <td>24</th>
+                                <td>28</th>
+                                <td>26</th>
+                                <td>17</th>
+                                <td>24</th>
+                                <td>30</th>
+                                <td>19</th>
+                                <td><a class="btn btn-sm btn-outline-info btn-block" href="#">Update</a></td>
+                                <td><a class="btn btn-sm btn-outline-danger btn-block" href="#">Delete</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td>Ranjit Avenue, Amritsar</th>
+                                <td>18-05-2019</th>
+                                <td>20-05-2019</th>
+                                <td>24</th>
+                                <td>26</th>
+                                <td>37</th>
+                                <td>21</th>
+                                <td>24</th>
+                                <td>26</th>
+                                <td>27</th>
+                                <td>21</th>
+                                <td><a class="btn btn-sm btn-outline-info btn-block" href="#">Update</a></td>
+                                <td><a class="btn btn-sm btn-outline-danger btn-block" href="#">Delete</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td>Ranjit Avenue, Amritsar</th>
+                                <td>12-11-2019</th>
+                                <td>15-11-2019</th>
+                                <td>28</th>
+                                <td>30</th>
+                                <td>25</th>
+                                <td>18</th>
+                                <td>28</th>
+                                <td>30</th>
+                                <td>21</th>
+                                <td>24</th>
+                                <td><a class="btn btn-sm btn-outline-info btn-block" href="#">Update</a></td>
+                                <td><a class="btn btn-sm btn-outline-danger btn-block" href="#">Delete</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td>Ranjit Avenue, Amritsar</th>
+                                <td>30-01-2020</th>
+                                <td>01-02-2020</th>
+                                <td>22</th>
+                                <td>18</th>
+                                <td>38</th>
+                                <td>22</th>
+                                <td>22</th>
+                                <td>18</th>
+                                <td>15</th>
+                                <td>22</th>
+                                <td><a class="btn btn-sm btn-outline-info btn-block" href="#">Update</a></td>
+                                <td><a class="btn btn-sm btn-outline-danger btn-block" href="#">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
