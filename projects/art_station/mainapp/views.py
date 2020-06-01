@@ -1,5 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+
+from django.contrib.auth.decorators import login_required
+
 
 from . import models
 from . import forms
@@ -7,16 +13,55 @@ from . import forms
 # from .filters import OrderFilter
 
 
-
+@login_required(login_url="artist_login")
 def homepage(request):
     i = [x for x in range(50)]
     context={'range_i': i}
     return render(request,'mainapp/homepage.html', context)
 
 
+def artist_register(request):
+    if request.user.is_authenticated:
+        return redirect("artist_home")
+    else:
+        form = forms.CreateUserForm()
+        if request.method == "POST":
+            form = forms.CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get("username")
+                messages.success(request,"Account created for " + user + "Successfully")
+                return redirect('/')
+
+
+        context={"form" : form}
+        return render(request, 'mainapp/artist_register.html', context)
+
+
+
 def artist_login(request):
-    context={}
-    return render(request, 'mainapp/artist_login.html', context)
+    if request.user.is_authenticated:
+        return redirect("artist_home")
+    else:
+        if request.method == "POST":
+            uname = request.POST.get("username")
+            passwd = request.POST.get("password")
+
+            user = authenticate(request, username=uname, password=passwd)
+
+            if user is not None:
+                login(request, user)
+                return redirect(artist_home)
+            else:
+                messages.info(request, "Username or Password is incorrect")
+
+        context={}
+        return render(request, 'mainapp/artist_login.html', context)
+
+
+def artist_logout(request):
+    logout(request)
+    return redirect('artist_login')
 
 
 def studio_login(request):
@@ -50,6 +95,7 @@ def studio_job(request):
     return render(request, 'mainapp/studio_job.html', context)
 
 
+@login_required(login_url="artist_login")
 def artist_home(request):
     images = models.ImageStore.objects.all()
     total_n = images.count()

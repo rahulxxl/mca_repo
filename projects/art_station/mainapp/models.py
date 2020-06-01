@@ -78,3 +78,12 @@ class Studio(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ArtistLogin(models.Model):
+    username = models.CharField(max_length=50, blank=False, null=False)
+    password = models.CharField(max_length=50, blank =False, null=False)
+    artist = models.ForeignKey(Artist, models.DO_NOTHING, blank=False, null=False)
+
+    def __str__(self):
+        return username

@@ -227,7 +227,10 @@
             </ul>
             <ul class="navbar-nav mr-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="/studio/"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                    <span>Hello, {{request.user}}</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'artist_logout' %}"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                 </li>
             </ul>
         </div>

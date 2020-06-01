@@ -1,7 +1,15 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django import forms
 
+
 from . import models
+
+
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
 
 
 class ImageUpload(forms.Form):
@@ -25,4 +33,22 @@ class PostJob(forms.Form):
     description.widget.attrs.update({"class":"form-control"})
     experience.widget.attrs.update({"class":"form-control"})
     salary.widget.attrs.update({"class":"form-control"})
+
+
+class LoginFormArtist(forms.Form):
+    username = forms.CharField(max_length=50)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    
+    username.widget.attrs.update({"class":"form-control"})
+    password.widget.attrs.update({"class":"form-control"})
+
+    def clean_username(self):
+        data = self.cleaned_data.get("username")
+        unames = models.ArtistLogin.objects.all()
+        for i in unames:
+            if i == data:
+                raise forms.ValidationError('Username Already exists')
+
+        return data
+
 
