@@ -30,22 +30,28 @@ class Artist(models.Model):
     def __str__(self):
         return self.name
 
-   
-class ImageInfoArtist(models.Model):
-    owner = models.ForeignKey(Artist, models.DO_NOTHING, db_column='owner', blank=True, null=True)
-    image_store = models.ForeignKey('ImageStore', models.DO_NOTHING, db_column='image_store', blank=True, null=True)
-    desc = models.CharField(max_length=255, blank=True, null=True)
-    medium = models.CharField(max_length=255, blank=True, null=True)
-    software = models.CharField(max_length=255, blank=True, null=True)
-
- 
+    
 class ImageProfile(models.Model):
     image = models.ImageField(blank=True, null=True)
+    owner = models.ForeignKey(Artist, models.DO_NOTHING, blank=True, null=True)
+
+
+
+class ImageInfoArtist(models.Model):
+    desc = models.CharField(max_length=255, blank=True, null=True)
 
 
 class ImageStore(models.Model):
     image = models.ImageField(blank=True, null=True)
-    thumb_image = models.TextField(blank=True, null=True)
+    owner = models.ForeignKey(Artist, models.DO_NOTHING, blank=True, null=True)
+    desc = models.CharField(max_length=255, blank=True, null=True)
+    medium = models.CharField(max_length=255, blank=True, null=True)
+    software = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        if self.owner is not None:
+            return self.owner.name
+        return "Missing Artist Name"
 
 
 class JobApplication(models.Model):

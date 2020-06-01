@@ -4,6 +4,9 @@ from django.http import HttpResponseRedirect
 from . import models
 from . import forms
 
+# from .filters import OrderFilter
+
+
 
 def homepage(request):
     i = [x for x in range(50)]
@@ -49,7 +52,14 @@ def studio_job(request):
 
 def artist_home(request):
     images = models.ImageStore.objects.all()
-    context={'i': images}
+    total_n = images.count()
+    my_dict = {}
+    n = 1
+    for i in images:
+        my_dict[n] = i
+        n = n+1
+
+    context={'image_data': my_dict, "total_n":total_n}
     return render(request, 'mainapp/artist_home.html', context)
 
 
@@ -67,12 +77,6 @@ def redirect_facebook(request):
 
 def profilepage(request):
     return render(request, 'mainapp/profile.html')
-
-# desc
-# medium
-# software
-# image
-
 
 
 def image_upload(request):
@@ -104,3 +108,7 @@ def image_upload(request):
     context = {"form":form}
     return render(request, "mainapp/image_upload.html", context)
 
+def demo(request):
+    myFilter = OrderFilter(request.GET, queryset = orders)
+    
+    context={"filter":myFilter}

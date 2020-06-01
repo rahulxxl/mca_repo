@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font Awesome CDN -->
+    <!-- For all Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <title>Traveller</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><i class="fas fa-home"></i> Traveller</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- Place your Navigation here if you wish to -->
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Plan a Travel</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-2">
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 
+    <div class="container-fluid mt-3 mx-3">
+        <div class="row justify-content-left">
+            <div class="card w-50 bg-light">
+                <div class="card-body">
+                    <form>
+                        
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="inputEmail5">Check-In: </label>
+                            <div class="col-sm-3 ml-n4">
+                                <input type="date" class="form-control" id="inputEmail5">
+                            </div>
+                            <label class="col-sm-2 col-form-label" for="inputEmail5">Check-Out: </label>
+                            <div class="col-sm-3  ml-n4">
+                                <input type="date" class="form-control" id="inputEmail5">
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ -->
+
+
+    <div class="container m-3">
+        <div class="row justify-content-center ml-3 ">
+
+            {% for i in rooms %}
+            <div class="col-md-6">
+                <div class=" card bg-light m-3" style="width:370px;">
+                    <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="350px" height="350px">
+                    <div class="heading">
+                        <h3 class="card-header">{{i.room_type}}</h3>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Price: <span class="text-primary">{{i.price}}</span></li>
+                        <!-- <li class="list-group-item">Days: <span class="text-primary"></span> </li>
+                        <li class="list-group-item">Nights: <span class="text-primary">3</span> </li>
+                        <li class="list-group-item">Total Price for Stay: <span class="text-primary">13500</span> </li> -->
+                    </ul>
+                    <div class="card-body">
+                        <a class="card-link" href="/confirmation/">Book Room</a>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -10,6 +10,43 @@ def homepage(request):
     return render(request, 'mainapp/homepage.html', context)
 
 
+def accept_blood(request):
+    context = {}
+    return render(request, 'mainapp/accept_blood.html', context)
+
+
+def blood_unit(request):
+    context = {}
+    return render(request, 'mainapp/blood_unit.html', context)
+
+
+def issue_blood(request):
+    context = {}
+    return render(request, 'mainapp/issue_blood.html', context)
+
+
+def organize_camp(request):
+    context = {}
+    return render(request, 'mainapp/organize_camp.html', context)
+
+
+def update_donor(request):
+    context = {}
+    return render(request, 'mainapp/update_donor.html', context)
+
+    
+def view_camp_detail(request):
+    context = {}
+    return render(request, 'mainapp/view_camp_detail.html', context)
+
+
+def view_camp(request):
+    context = {}
+    return render(request, 'mainapp/view_camp.html', context)
+
+
+def view_donors(request):
+    return render(request, 'mainapp/view_donors.html')
 
 
 
