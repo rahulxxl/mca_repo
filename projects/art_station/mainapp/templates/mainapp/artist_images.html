@@ -211,7 +211,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark" id="main-navbar">
-        <a class="navbar-brand" href="#"><i class="fas fa-home"></i> Graphicteria</a>
+        <a class="navbar-brand" href="/"><i class="fas fa-home"></i> Graphicteria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -219,17 +219,17 @@
             <ul class="navbar-nav mr-auto">
                 <!-- Place your Navigation here if you wish to -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'artist_images' %}"> My Images</a>
+                    <a class="nav-link active" href="{% url 'artist_images' %}"> My Images</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'image_uplod' %}"> Upload Images</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'artist_home' %}"> View Gallery</a>
+                    <a class="nav-link" href="{% url 'artist_home' %}"> View Gallery</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'artist_view_job' %}"> View All Jobs</a>
-                </li>            
+                </li>
             </ul>
             <ul class="navbar-nav mr-2">
                 <li class="nav-item">

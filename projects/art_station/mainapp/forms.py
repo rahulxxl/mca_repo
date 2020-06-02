@@ -6,11 +6,6 @@ from django import forms
 from . import models
 
 
-class CreateUserForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
-
 
 class ImageUpload(forms.Form):
     desc = forms.CharField(max_length=100)
@@ -39,16 +34,43 @@ class LoginFormArtist(forms.Form):
     username = forms.CharField(max_length=50)
     password = forms.CharField(max_length=50, widget=forms.PasswordInput)
     
-    username.widget.attrs.update({"class":"form-control"})
-    password.widget.attrs.update({"class":"form-control"})
+    username.widget.attrs.update({"class":"form-control", "placeholder":"username"})
+    password.widget.attrs.update({"class":"form-control", "placeholder":"password"})
 
-    def clean_username(self):
-        data = self.cleaned_data.get("username")
-        unames = models.ArtistLogin.objects.all()
-        for i in unames:
-            if i == data:
-                raise forms.ValidationError('Username Already exists')
 
-        return data
+class LoginFormStudio(forms.Form):
+    username = forms.CharField(max_length=50)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    
+    username.widget.attrs.update({"class":"form-control", "placeholder":"studio username"})
+    password.widget.attrs.update({"class":"form-control", "placeholder":"password"})
 
+
+
+class RegisterArtist(forms.Form):
+    name = forms.CharField(max_length=50)
+    username = forms.CharField(max_length=50)
+    email = forms.EmailField(max_length=50, required=True)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    password_confirm = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    
+    name.widget.attrs.update({"class":"form-control", "placeholder":"full name"})
+    username.widget.attrs.update({"class":"form-control", "placeholder":"username"})
+    email.widget.attrs.update({"class":"form-control", "placeholder":"email"})
+    password.widget.attrs.update({"class":"form-control", "placeholder":"password"})
+    password_confirm.widget.attrs.update({"class":"form-control", "placeholder":"confirm password"})
+
+
+class RegisterStudio(forms.Form):
+    name = forms.CharField(max_length=50)
+    username = forms.CharField(max_length=50)
+    email = forms.EmailField(max_length=50, required=True)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    password_confirm = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    
+    name.widget.attrs.update({"class":"form-control", "placeholder":"full name of studio"})
+    username.widget.attrs.update({"class":"form-control", "placeholder":"studio username"})
+    email.widget.attrs.update({"class":"form-control", "placeholder":"email"})
+    password.widget.attrs.update({"class":"form-control", "placeholder":"password"})
+    password_confirm.widget.attrs.update({"class":"form-control", "placeholder":"confirm password"})
 

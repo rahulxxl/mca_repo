@@ -23,24 +23,24 @@ ART_MEDIUM = (
 
 
 class Artist(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True)
-    email = models.CharField(max_length=100, blank=True, null=True)
-    password = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
+    username = models.CharField(max_length=50, blank=False, null=False)
+    email = models.EmailField(max_length=50, blank=False, null=True)
+    password = models.CharField(max_length=50, blank =False, null=False)
+    
+    def __str__(self):
+        return self.name
+
+class Studio(models.Model):
+    name = models.CharField(max_length=50, blank=False, null=False)
+    username = models.CharField(max_length=50, blank=False, null=False)
+    email = models.EmailField(max_length=50, blank=False, null=True)
+    password = models.CharField(max_length=50, blank =False, null=False)
     
     def __str__(self):
         return self.name
 
     
-class ImageProfile(models.Model):
-    image = models.ImageField(blank=True, null=True)
-    owner = models.ForeignKey(Artist, models.DO_NOTHING, blank=True, null=True)
-
-
-
-class ImageInfoArtist(models.Model):
-    desc = models.CharField(max_length=255, blank=True, null=True)
-
-
 class ImageStore(models.Model):
     image = models.ImageField(blank=True, null=True)
     owner = models.ForeignKey(Artist, models.DO_NOTHING, blank=True, null=True)
@@ -60,30 +60,26 @@ class JobApplication(models.Model):
 
    
 class JobListing(models.Model):
+    studio = models.ForeignKey('Studio', models.DO_NOTHING, db_column='studio', blank=True, null=True)
     title = models.CharField(max_length=100, blank=True, null=True)
     desc = models.CharField(max_length=255, blank=True, null=True)
     experience = models.CharField(max_length=50, blank=True, null=True)
-    studio = models.ForeignKey('Studio', models.DO_NOTHING, db_column='studio', blank=True, null=True)
     salary = models.DecimalField(max_digits=11, decimal_places=2, blank=True, null=True)
     
     def __str__(self):
         return self.desc
     
 
-class Studio(models.Model):
-    email = models.CharField(unique=True, max_length=100, blank=True, null=True)
-    password = models.CharField(max_length=100, blank=True, null=True)
-    name = models.CharField(max_length=100, blank=True, null=True)
-    profile_image = models.ForeignKey(ImageProfile, models.DO_NOTHING, db_column='profile_image', blank=True, null=True)
+class ActiveSession(models.Model):
+    artist =  models.ForeignKey(Artist, models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return self.artist.username
 
 
-class ArtistLogin(models.Model):
-    username = models.CharField(max_length=50, blank=False, null=False)
-    password = models.CharField(max_length=50, blank =False, null=False)
-    artist = models.ForeignKey(Artist, models.DO_NOTHING, blank=False, null=False)
+
+class ActiveStudioSession(models.Model):
+    studio =  models.ForeignKey(Studio, models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
-        return username
+        return self.studio.username

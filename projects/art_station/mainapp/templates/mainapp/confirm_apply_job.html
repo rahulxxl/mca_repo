@@ -38,7 +38,7 @@
                     <a class="nav-link" href="{% url 'artist_home' %}"> View Gallery</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'artist_view_job' %}"> View All Jobs</a>
+                    <a class="nav-link" href="{% url 'artist_view_job' %}"> View All Jobs</a>
                 </li>
             </ul>
             <ul class="navbar-nav mr-2">
@@ -49,44 +49,20 @@
         </div>
     </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="card m-2" style="width: 56rem;">
-            <div class="card-header">
-                <h1>Jobs for You</h1>
+
+    <div class="container-fluid m-5">
+        <div class="row justify-content-center">
+
+            <div class="col-md-8">
+                <div class="jumbotron">
+                    <h1 class="display-4">Congratulations!</h1>
+                    <hr class="my-4">
+                    <p class="lead">You have successfully applied for the job.</p>
+                    <p class="lead">
+                      <a class="btn btn-primary btn-lg" href="{% url 'artist_home' %}" role="button">View Gallery</a>
+                    </p>
+                  </div>
             </div>
-        </div>        
-    </div>
-</div>
-
-
-    <div class="container">
-        <div class="row">
-
-            {% for i in jobs %}
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-header">
-                    <h2>{{i.title}}</h2>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">
-                        <h4>{{i.studio.name}}</h4>
-                    </div>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span>{{i.desc}}</span></li>
-                    <li class="list-group-item">Experience: <span>{{i.experience}}</span></li>
-                    <li class="list-group-item">Salary: <span>{{i.salary}}</span></li>
-                    <li class="list-group-item">Prize: <span>{{i.prize}}</span></li>
-                </ul>
-                <div class="card-body">
-                    <h6>
-                        <a class="card-link" href="{% url 'confirm_apply_job' i.id %}">Apply</a>
-                    </h6>
-                </div>
-            </div>
-            {% endfor %}
-
            
 
         </div>
