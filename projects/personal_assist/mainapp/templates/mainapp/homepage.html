@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font Awesome CDN -->
+    <!-- For all Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <title>Persona</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Numans');
+
+        body {
+            background-image:url("images/green_texture.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+
+        input:focus {
+            outline: 0 0 0 0 !important;
+            box-shadow: 0 0 0 0 !important;
+
+        }
+
+
+        .login_btn {
+            color: black;
+            background-color: rgba(32, 173, 255, 0.856);
+            width: 100px;
+        }
+
+        .login_btn:hover {
+            color: black;
+            background-color: rgba(25, 129, 189, 0.616);
+        }
+
+        .links {
+            color: white;
+        }
+
+        .links a {
+            margin-left: 4px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container-fluid mt-5">
+        <div class="row justify-content-around">
+            <div class="col-md-2 m-2 p-0">
+                <div class="card text-white bg-primary border border-dark rounded" style="width:100%; height:16rem;">
+                    <div class="card-header px-0">
+                        <div class="row px-2">
+                            <div class="col-md-3 px-3 ">
+                                <img src="images/weather.jpg" alt="image" style="width:3rem; height:3rem;">
+                            </div>
+                            <div class="col-md p-0 mt-1">
+                                <h3>Current Weather</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-link card-title text-white m-1" href="#">This card provides the report for
+                            Current Weather of your location.</h5>
+                    </div>
+                    <div class="card-footer ">
+                        <a class="btn btn-warning btn-block" href="#">Click Here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 m-2 p-0">
+                <div class="card text-white bg-info border border-dark rounded" style="width:100%; height:16rem;">
+                    <div class="card-header px-0">
+                        <div class="row px-2">
+                            <div class="col-md-3 px-3 ">
+                                <img src="images/weather.jpg" alt="image" style="width:3rem; height:3rem;">
+                            </div>
+                            <div class="col-md p-0 mt-1">
+                                <h3>Hourly Weather</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-link card-title text-white m-1" href="#">This card provides hourly report for
+                            Weather of your location.</h5>
+                    </div>
+                    <div class="card-footer ">
+                        <a class="btn btn-primary btn-block" href="#">Click Here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-2 m-2 p-0">
+                <div class="card text-dark bg-warning border border-dark rounded" style="width:100%; height:16rem;">
+                    <div class="card-header px-0">
+                        <div class="row px-2">
+                            <div class="col-md-3 px-3 ">
+                                <img src="images/weather.jpg" alt="image" style="width:3rem; height:3rem;">
+                            </div>
+                            <div class="col-md p-0 mt-1">
+                                <h3>5 Days Weather</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-link text-dark card-title m-1" href="#">This card provides upcoming 5 days
+                            report for Weather of your location.</h5>
+                    </div>
+                    <div class="card-footer ">
+                        <a class="btn btn-info btn-block" href="#">Click Here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-around mt-4">
+            <div class="col-md-2 m-2 p-0">
+                <div class="card text-white bg-secondary border border-dark rounded"
+                    style="max-width:100%; height:16rem;">
+                    <div class="card-header px-0">
+                        <div class="row px-2">
+                            <div class="col-md-3 px-3 ">
+                                <img src="images/maps.png" alt="image" style="width:3rem; height:3rem;">
+                            </div>
+                            <div class="col-md p-0 mt-1">
+                                <h3>Nearby Bus Stand</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-link card-title text-white m-1" href="#">This card provides Map location of Bus
+                            Stands near you.</h5>
+                    </div>
+                    <div class="card-footer ">
+                        <a class="btn btn-primary btn-block" href="#">Click Here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 m-2 p-0">
+                <div class="card text-white bg-danger border border-dark rounded" style="max-width:100%; height:16rem;">
+                    <div class="card-header px-0">
+                        <div class="row px-2">
+                            <div class="col-md-3 px-3 ">
+                                <img src="images/maps.png" alt="image" style="width:3rem; height:3rem;">
+                            </div>
+                            <div class="col-md p-0 mt-1">
+                                <h3>Nearby Hotels</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-link text-white card-title m-1" href="#">This card provides Map location of
+                            Hotels around you.</h5>
+                    </div>
+                    <div class="card-footer ">
+                        <a class="btn btn-warning btn-block" href="#">Click Here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

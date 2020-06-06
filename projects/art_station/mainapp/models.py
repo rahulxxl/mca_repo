@@ -71,7 +71,7 @@ class JobListing(models.Model):
     
 
 class ActiveSession(models.Model):
-    artist =  models.ForeignKey(Artist, models.DO_NOTHING, blank=True, null=True)
+    artist =  models.ForeignKey(Artist, models.DO_NOTHING, blank=True, null=False)
 
     def __str__(self):
         return self.artist.username
@@ -79,7 +79,7 @@ class ActiveSession(models.Model):
 
 
 class ActiveStudioSession(models.Model):
-    studio =  models.ForeignKey(Studio, models.DO_NOTHING, blank=True, null=True)
+    studio =  models.ForeignKey(Studio, models.DO_NOTHING, blank=True, null=False)
 
     def __str__(self):
         return self.studio.username

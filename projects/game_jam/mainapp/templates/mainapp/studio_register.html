@@ -124,7 +124,7 @@
             </ul>
             <ul class="navbar-nav mr-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="/studio/"><i class="fas fa-building"></i> Studio Log In</a>
+                    <a class="nav-link" href="{% url 'studio_login' %}"><i class="fas fa-building"></i> Studio Log In</a>
                 </li>
             </ul>
         </div>
@@ -133,41 +133,65 @@
     
     <div class="container">
         <div class="d-flex justify-content-center h-100">
-            <div class="card">
+            <div class="card" style="height:28rem;">
                 <div class="card-header">
-                    <h3>Artist Log In</h3>
+                    <h3>Studio Registeration</h3>
                     
                 </div>
                 <div class="card-body">
-                    <form action="view_jams/">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-chess-king"></i></span>
+                            </div>
+                            {{form.name}}
+                        </div>
+                        {{form.name.errors}}
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="username">
-
+                            {{form.username}}
                         </div>
+                        {{form.username.errors}}
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                            </div>
+                            {{form.email}}
+                        </div>
+                        {{form.email.errors}}
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="password">
+                            {{form.password}}
                         </div>
-                        <div class="row align-items-center remember">
+                        {{form.password.errors}}
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            {{form.password_confirm}}
+                        </div>
+                        {{form.password_confirm.errors}}
+                        <!-- <div class="row align-items-center remember">
                             <input type="checkbox">Remember Me
-                        </div>
+                        </div> -->
+                        <br>
                         <div class="form-group">
-                            <input type="submit" value="Login" class="btn float-right login_btn">
+                            <input type="submit" value="Submit" class="btn float-right login_btn">
                         </div>
+                        {% if messages %}
+                        <ul class="messages text-white">
+                            {% for message in messages %}
+                                <li >{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </form>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center links">
-                        Don't have an account?<a href="#" style="color: #FFC312;">Sign Up</a>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" style="color: #FFC312;">Forgot your password?</a>
-                    </div>
                 </div>
             </div>
         </div>

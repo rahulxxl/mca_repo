@@ -14,18 +14,23 @@ class DevSkill(models.Model):
 
 
 class Developer(models.Model):
-    first_name = models.CharField(max_length=60, blank=True, null=True)
-    last_name = models.CharField(max_length=60, blank=True, null=True)
-    username = models.CharField(unique=True, max_length=50, blank=True, null=True)
+    username = models.CharField(unique=True, max_length=50, blank=False, null=False)
+    name = models.CharField(max_length=60, blank=True, null=True)
     email = models.CharField(unique=True, max_length=100, blank=True, null=True)
     password = models.CharField(max_length=255, blank=True, null=True)
-    profile_image = models.ForeignKey('ImageStore', models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
         return self.username
 
+
 class ImageStore(models.Model):
-    image = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+    developer =  models.ForeignKey(Developer, models.DO_NOTHING, blank=True, null=True)
+    
+    def __str__(self):
+        if self.developer is not None:
+            return self.id + "-"+ self.developer.username 
+        return "Missing Developer"
 
 
 class Jam(models.Model):
@@ -55,8 +60,10 @@ class Skill(models.Model):
 
 
 class Studio(models.Model):
+    username = models.CharField(max_length=50, blank=False, null=False)
     name = models.CharField(max_length=100, blank=True, null=True)
-    profile_image = models.ForeignKey(ImageStore, models.DO_NOTHING, blank=True, null=True)
+    email = models.CharField(unique=True, max_length=100, blank=True, null=True)
+    password = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -69,4 +76,19 @@ class Team(models.Model):
     dev_3 = models.ForeignKey(Developer, models.DO_NOTHING, related_name="dev_3_to_dev", blank=True, null=True)
     dev_4 = models.ForeignKey(Developer, models.DO_NOTHING, related_name="dev_4_to_dev", blank=True, null=True)
     dev_5 = models.ForeignKey(Developer, models.DO_NOTHING, related_name="dev_5_to_dev", blank=True, null=True)
+
+
+class SessionDeveloper(models.Model):
+    developer = models.ForeignKey(Developer, models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return self.developer.username
+
+
+class SessionStudio(models.Model):
+    studio = models.ForeignKey(Studio, models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return self.studio.username
+
 

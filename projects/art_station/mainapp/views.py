@@ -9,41 +9,23 @@ from . import forms
 # from .filters import OrderFilter
 
 
-def artist_logout(request):
-    #logout(request)
-    return redirect('artist_login')
-
-
-def studio_register(request):
-    pass
-
-def studio_login(request):
-    context={}
-    return render(request, 'mainapp/studio_login.html', context)
-
-def studio_logout(request):
-    pass
-
-
-
 def studio_job(request):
     if request.method == "POST":
         form = forms.PostJob(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            studio = models.Studio.objects.last()
+            sessions = models.ActiveStudioSession.objects.all()
+            session = sessions.last()
             job = models.JobListing()
+            job.studio = session.studio
             job.title = data['title']
             job.desc= data['description']
             job.experience = data['experience']
             job.salary = data['salary']
-            job.studio = studio
             job.save()
-
-            return HttpResponseRedirect('/studio_home/')
+            return redirect('studio_home')
     else:
         form = forms.PostJob()
-
     context={"form":form}
     return render(request, 'mainapp/studio_job.html', context)
 
@@ -57,7 +39,6 @@ def artist_home(request):
     for i in images:
         my_dict[n] = i
         n = n+1
-
     context={'image_data': my_dict, "total_n":total_n}
     return render(request, 'mainapp/artist_home.html', context)
 
@@ -70,24 +51,20 @@ def studio_home(request):
     for i in images:
         my_dict[n] = i
         n = n+1
-
     context={'image_data': my_dict, "total_n":total_n}
     return render(request, 'mainapp/studio_home.html', context)
 
-    
 
 def artist_images(request):
     sessions = models.ActiveSession.objects.all()
     session = sessions.last()
     images = models.ImageStore.objects.filter(owner=session.artist)
-
     total_n = images.count()
     my_dict = {}
     n = 1
     for i in images:
         my_dict[n] = i
         n = n+1
-
     context={'image_data': my_dict, "total_n":total_n}
     return render(request, 'mainapp/artist_images.html', context)
 
@@ -98,7 +75,6 @@ def artist_view_job(request):
     return render(request, 'mainapp/artist_view_job.html', context)
 
 
-
 def confirm_apply_job(request, job_id):
     job = models.JobApplication()
     job.job_listing = models.JobListing.objects.get(id=job_id)
@@ -106,16 +82,13 @@ def confirm_apply_job(request, job_id):
     session = sessions.last()
     job.artist = session.artist
     job.save()
-
     context = {}
     return render(request, 'mainapp/confirm_apply_job.html', context)
-
 
 
 def image_upload(request):
     if request.method == "POST":
         form = forms.ImageUpload(request.POST, request.FILES)
-        
         if form.is_valid():
             # Cleanup the form Data
             data = form.cleaned_data
@@ -128,17 +101,12 @@ def image_upload(request):
             obj.desc = data["desc"]
             obj.medium = data["medium"]
             obj.software = data["software"]
-            # Save the data
             obj.save()
-
             return redirect('artist_home')
     else:
         form = forms.ImageUpload()
-
     context = {"form":form}
     return render(request, "mainapp/image_upload.html", context)
-
-
 
 
 def artist_register(request):
@@ -151,13 +119,10 @@ def artist_register(request):
             email = data['email']
             password=data['password']
             password_confirm = data["password_confirm"]
-
             flagError =False
             if password != password_confirm:
                 flagError = True
                 messages.error(request,"Passwords do not match")
-                
-
             users = models.Artist.objects.all()
             for x in users:
                 if username == x.username:
@@ -166,7 +131,6 @@ def artist_register(request):
                 if email == x.email:
                     flagError = True
                     messages.error(request,"email already exists.")
-
             if(flagError == False):
                 newArtist = models.Artist()
                 newArtist.name = name
@@ -180,10 +144,8 @@ def artist_register(request):
                 pass
     else:
         form=forms.RegisterArtist()
-    
     context ={"form":form}
     return render(request, 'mainapp/artist_register.html',context)
-
 
 
 def studio_register(request):
@@ -196,13 +158,10 @@ def studio_register(request):
             email = data['email']
             password=data['password']
             password_confirm = data["password_confirm"]
-
             flagError =False
             if password != password_confirm:
                 flagError = True
                 messages.error(request,"Passwords do not match")
-                
-
             users = models.Studio.objects.all()
             for x in users:
                 if username == x.username:
@@ -211,7 +170,6 @@ def studio_register(request):
                 if email == x.email:
                     flagError = True
                     messages.error(request,"studio email already exists.")
-
             if(flagError == False):
                 newStudio = models.Studio()
                 newStudio.name = name
@@ -225,11 +183,8 @@ def studio_register(request):
                 pass
     else:
         form=forms.RegisterStudio()
-    
     context ={"form":form}
     return render(request, 'mainapp/studio_register.html',context)
-
-
 
 
 def artist_login(request):
@@ -244,20 +199,15 @@ def artist_login(request):
                 if x.username == uname:
                     if x.password == passwd:
                         session= models.ActiveSession()
-                        session.session_type= models.ActiveSession.SESSION_TYPE[0]
                         session.artist = x  # x is model object of ArtistLogin. Thats what we want
                         session.save()
                         return redirect('artist_home')
                     else:
                         messages.error(request, "username and password does not match")
                         return redirect("artist_login")
-            
-            print("username does not exsits")
             messages.error(request, "username does not exists")
-
     else:
         form = forms.LoginFormArtist()
-    
     context={"form":form}
     return render(request, 'mainapp/artist_login.html', context)
 
@@ -274,7 +224,7 @@ def studio_login(request):
                 if x.username == uname:
                     if x.password == passwd:
                         session= models.ActiveStudioSession()
-                        session.artist = x 
+                        session.studio = x 
                         session.save()
                         return redirect('studio_home')
                     else:
@@ -288,3 +238,14 @@ def studio_login(request):
     
     context={"form":form}
     return render(request, 'mainapp/studio_login.html', context)
+
+
+
+def artist_logout(request):
+    models.ActiveSession.objects.all().delete()
+    return redirect('artist_login')
+
+
+def studio_logout(request):
+    models.ActiveStudioSession.objects.all().delete()
+    return redirect('artist_login')

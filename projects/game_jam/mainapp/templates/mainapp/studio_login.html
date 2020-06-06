@@ -111,10 +111,8 @@
 </head>
 
 <body>
-
-
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="/"><i class="fas fa-home"></i> Jamify</a>
+        <a class="navbar-brand" href="{% url 'studio_login' %}"><i class="fas fa-home"></i> Jamify</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -124,7 +122,7 @@
             </ul>
             <ul class="navbar-nav mr-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="/"><i class="fas fa-user"></i> Artist Login In</a>
+                    <a class="nav-link" href="{% url 'developer_login' %}"><i class="fas fa-user"></i> Developer Login In</a>
                 </li>
             </ul>
         </div>
@@ -135,37 +133,44 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Studio Log In</h3>
-                    
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-building"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="studioname">
-
+                            {{form.username}}
                         </div>
+                        {{form.username.errors}}
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="password">
+                            {{form.password}}
                         </div>
-                        <div class="row align-items-center remember">
+                        {{form.password.errors}}
+                        <!-- <div class="row align-items-center remember">
                             <input type="checkbox">Remember Me
-                        </div>
+                        </div> -->
+                        <br>
                         <div class="form-group">
                             <input type="submit" value="Login" class="btn float-right login_btn">
                         </div>
+                        {% if messages %}
+                        <ul class="messages text-white">
+                            {% for message in messages %}
+                                <li >{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </form>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
-                        Don't have an account?<a href="#" style="color: #FFC312;">Sign Up</a>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" style="color: #FFC312;">Forgot your password?</a>
+                        Don't have an account?<a href="{% url 'studio_register' %}" style="color: #FFC312;">Sign Up</a>
                     </div>
                 </div>
             </div>

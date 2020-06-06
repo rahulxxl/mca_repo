@@ -112,12 +112,9 @@
 
 <body>
 
-
-
-
-
+    
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="/"><i class="fas fa-home"></i> Jamify</a>
+        <a class="navbar-brand" href="{% url 'developer_login' %}"><i class="fas fa-home"></i> Jamify</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -127,108 +124,78 @@
             </ul>
             <ul class="navbar-nav mr-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-user"></i> Artist Login In</a>
+                    <a class="nav-link" href="{% url 'studio_login' %}"><i class="fas fa-building"></i> Studio Log In</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-
-    <!-- 
-<a href="#" onClick="(function(){
-    var d1 = document.getElementById('myForm').item(1);
-    // var ds1 = d1.parse();
-    alert('fuck This Shit');
-})();">click here</a>
- -->
-
-
-
-
+    
     <div class="container">
-        <div class="row">
-            <div class="card my-3 w-50">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card"  style="height:28rem;">
                 <div class="card-header">
-                    <h1>Create a Jam</h1>
+                    <h3>Developer Registeration</h3>
+                    
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-
-            <div class="card w-50">
                 <div class="card-body">
-                    <form action="{% url 'create_jam' %}" method="POST" id="myForm">
+                    <form action="" method="POST">
                         {% csrf_token %}
-                        {{form.non_field_errors}}
 
-                        <div class="form-group row">
-                            {{form.jam_title.errors}}
-                            <label class="col-sm-4 col-form-label"
-                                for="{{from.jam_title.id_for_label}}">{{form.jam_title.label}}</label>
-                            <div class="col-sm-8">
-                                {{form.jam_title}}
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-chess-king"></i></span>
                             </div>
+                            {{form.name}}
                         </div>
-
-                        <div class="form-group row">
-                            {{form.start_date.errors}}
-                            <label class="col-sm-4 col-form-label"
-                                for="{{from.start_date.id_for_label}}">{{form.start_date.label}}</label>
-                            <div class="col-sm-8">
-                                {{form.start_date}}
+                        {{form.name.errors}}
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
+                            {{form.username}}
                         </div>
-
-                        <div class="form-group row">
-                            {{form.end_date.errors}}
-                            <label class="col-sm-4 col-form-label"
-                                for="{{from.end_date.id_for_label}}">{{form.end_date.label}}</label>
-                            <div class="col-sm-8">
-                                {{form.end_date}}
+                        {{form.username.errors}}
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-at"></i></span>
                             </div>
+                            {{form.email}}
                         </div>
-
-                        <div class="form-group row">
-                            {{form.team_size.errors}}
-                            <label class="col-sm-4 col-form-label"
-                                for="{{from.team_size.id_for_label}}">{{form.team_size.label}}</label>
-                            <div class="col-sm-8">
-                                {{form.team_size}}
+                        {{form.email.errors}}
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
+                            {{form.password}}
                         </div>
-
-                        <div class="form-group row">
-                            {{form.prize.errors}}
-                            <label class="col-sm-4 col-form-label"
-                                for="{{from.prize.id_for_label}}">{{form.prize.label}}</label>
-                            <div class="col-sm-8">
-                                {{form.prize}}
+                        {{form.password.errors}}
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
+                            {{form.password_confirm}}
                         </div>
-
-                        <hr>
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                            <div class="col-sm-8">
-                                <a class="btn btn-primary" href="/">Cancel</a>
-                            </div>
+                        {{form.password_confirm.errors}}
+                        <!-- <div class="row align-items-center remember">
+                            <input type="checkbox">Remember Me
+                        </div> -->
+                        <br>
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn float-right login_btn">
                         </div>
-
+                        {% if messages %}
+                        <ul class="messages text-white">
+                            {% for message in messages %}
+                                <li >{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </form>
-
                 </div>
             </div>
-
-
         </div>
-
     </div>
-
 
 
     <!-- Optional JavaScript -->

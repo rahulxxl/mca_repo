@@ -34,6 +34,50 @@ class CreateJam(forms.Form):
 
 
 
-
 class ApplyJam(forms.Form):
     pass
+
+
+class LoginFormDeveloper(forms.Form):
+    username = forms.CharField(max_length=50)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    
+    username.widget.attrs.update({"class":"form-control", "placeholder":"username"})
+    password.widget.attrs.update({"class":"form-control", "placeholder":"password"})
+
+
+class LoginFormStudio(forms.Form):
+    username = forms.CharField(max_length=50)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    
+    username.widget.attrs.update({"class":"form-control", "placeholder":"studio username"})
+    password.widget.attrs.update({"class":"form-control", "placeholder":"password"})
+
+
+class RegisterDeveloper(forms.Form):
+    name = forms.CharField(max_length=50)
+    username = forms.CharField(max_length=50)
+    email = forms.EmailField(max_length=50, required=True)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    password_confirm = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    
+    name.widget.attrs.update({"class":"form-control", "placeholder":"full name"})
+    username.widget.attrs.update({"class":"form-control", "placeholder":"username"})
+    email.widget.attrs.update({"class":"form-control", "placeholder":"email"})
+    password.widget.attrs.update({"class":"form-control", "placeholder":"password"})
+    password_confirm.widget.attrs.update({"class":"form-control", "placeholder":"confirm password"})
+
+
+class RegisterStudio(forms.Form):
+    name = forms.CharField(max_length=50)
+    username = forms.CharField(max_length=50)
+    email = forms.EmailField(max_length=50, required=True)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    password_confirm = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    
+    name.widget.attrs.update({"class":"form-control", "placeholder":"full name of studio"})
+    username.widget.attrs.update({"class":"form-control", "placeholder":"studio username"})
+    email.widget.attrs.update({"class":"form-control", "placeholder":"email"})
+    password.widget.attrs.update({"class":"form-control", "placeholder":"password"})
+    password_confirm.widget.attrs.update({"class":"form-control", "placeholder":"confirm password"})
+
