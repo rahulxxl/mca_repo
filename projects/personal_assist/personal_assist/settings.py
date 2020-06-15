@@ -128,3 +128,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 
 ]
+
+MAPS_API_KEY = "ua9AKL2fpGPEnZ2Ba7Mwt1TNLA8hbuT3"

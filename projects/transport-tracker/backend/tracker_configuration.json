@@ -1,0 +1,5 @@
+{
+	"mapsApiKey": "AIzaSyCCXCVJL1hLobRwuwn7Dodl0N2t43AqrtE",
+	"databaseURL": "https://transport-locator-ba0a1.firebaseio.com",
+	"simulation": true
+}

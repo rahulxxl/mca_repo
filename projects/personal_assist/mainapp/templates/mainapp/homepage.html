@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 
@@ -56,8 +58,18 @@
 </head>
 
 <body>
-
-    <div class="container-fluid mt-5">
+    <div class="container-fluid mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Welcome to Persona.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-4">
         <div class="row justify-content-around">
             <div class="col-md-2 m-2 p-0">
                 <div class="card text-white bg-primary border border-dark rounded" style="width:100%; height:16rem;">
@@ -72,14 +84,15 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-link card-title text-white m-1" href="#">This card provides the report for
+                        <h5 class="card-link card-title text-white m-1">This card provides the report for
                             Current Weather of your location.</h5>
                     </div>
                     <div class="card-footer ">
-                        <a class="btn btn-warning btn-block" href="#">Click Here</a>
+                        <a class="btn btn-warning btn-block" href="{% url 'current_weather' %}">Click Here</a>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-2 m-2 p-0">
                 <div class="card text-white bg-info border border-dark rounded" style="width:100%; height:16rem;">
                     <div class="card-header px-0">
@@ -93,15 +106,16 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-link card-title text-white m-1" href="#">This card provides hourly report for
+                        <h5 class="card-link card-title text-white m-1">This card provides hourly report for
                             Weather of your location.</h5>
                     </div>
                     <div class="card-footer ">
-                        <a class="btn btn-primary btn-block" href="#">Click Here</a>
+                        <a class="btn btn-primary btn-block" href="{% url 'hourly_weather' %}">Click Here</a>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row justify-content-center">
             <div class="col-md-2 m-2 p-0">
                 <div class="card text-dark bg-warning border border-dark rounded" style="width:100%; height:16rem;">
@@ -116,15 +130,16 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-link text-dark card-title m-1" href="#">This card provides upcoming 5 days
+                        <h5 class="card-link text-dark card-title m-1">This card provides upcoming 5 days
                             report for Weather of your location.</h5>
                     </div>
                     <div class="card-footer ">
-                        <a class="btn btn-info btn-block" href="#">Click Here</a>
+                        <a class="btn btn-info btn-block" href="{% url 'five_day_weather' %}">Click Here</a>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row justify-content-around mt-4">
             <div class="col-md-2 m-2 p-0">
                 <div class="card text-white bg-secondary border border-dark rounded"
@@ -140,14 +155,15 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-link card-title text-white m-1" href="#">This card provides Map location of Bus
+                        <h5 class="card-link card-title text-white m-1">This card provides Map location of Bus
                             Stands near you.</h5>
                     </div>
                     <div class="card-footer ">
-                        <a class="btn btn-primary btn-block" href="#">Click Here</a>
+                        <a class="btn btn-primary btn-block" href="{% url 'nearby_bus_stand' %}">Click Here</a>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-2 m-2 p-0">
                 <div class="card text-white bg-danger border border-dark rounded" style="max-width:100%; height:16rem;">
                     <div class="card-header px-0">
@@ -161,11 +177,11 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-link text-white card-title m-1" href="#">This card provides Map location of
+                        <h5 class="card-link text-white card-title m-1">This card provides Map location of
                             Hotels around you.</h5>
                     </div>
                     <div class="card-footer ">
-                        <a class="btn btn-warning btn-block" href="#">Click Here</a>
+                        <a class="btn btn-warning btn-block" href="{% url 'nearby_hotels' %}">Click Here</a>
                     </div>
                 </div>
             </div>

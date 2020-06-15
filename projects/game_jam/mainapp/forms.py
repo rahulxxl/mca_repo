@@ -10,13 +10,13 @@ class CustDateInput(forms.DateInput):
 
 class CreateJam(forms.Form):
     jam_title = forms.CharField(max_length=50)
-    start_date = forms.DateTimeField()
-    end_date = forms.DateTimeField()
-    team_size = forms.IntegerField(min_value=1, max_value=5)
+    start_date = forms.DateField()
+    end_date = forms.DateField()
+    #team_size = forms.IntegerField(min_value=1, max_value=5)
     prize = forms.IntegerField(min_value=1)
 
     jam_title.widget.attrs.update({"class":"form-control"})
-    team_size.widget.attrs.update({"class":"form-control"})
+    #team_size.widget.attrs.update({"class":"form-control"})
     prize.widget.attrs.update({"class":"form-control"})
     
     # Date Calculation

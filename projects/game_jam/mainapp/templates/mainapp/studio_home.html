@@ -33,7 +33,7 @@
                     <a class="nav-link" href="{% url 'studio_create_jam' %}">Create Jam</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'studio_view_jam' %}">View Upcoming Jams</a>
+                    <a class="nav-link" href="{% url 'studio_view_jam' %}">Organized Jams</a>
                 </li>
             </ul>
             <ul class="navbar-nav mr-2">
@@ -44,20 +44,18 @@
         </div>
     </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="card m-2" style="width: 56rem;">
-            <div class="card-header">
-                <h1>Upcoming Jams</h1>
+    <div class="container">
+        <div class="row">
+            <div class="card m-2" style="width: 56rem;">
+                <div class="card-header">
+                    <h1>All Jams</h1>
+                </div>
             </div>
-        </div>        
+        </div>
     </div>
-</div>
-
 
     <div class="container">
         <div class="row">
-
             {% for i in jams %}
             <div class="card m-2" style="width: 18rem;">
                 <div class="card-header">
@@ -71,24 +69,12 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Start Date: <span>{{i.start_date}}</span></li>
                     <li class="list-group-item">End Date: <span>{{i.end_date}}</span></li>
-                    <li class="list-group-item">Team Size: <span>{{i.team_size}} devs</span></li>
-                    <li class="list-group-item">Prize: <span>{{i.prize}} devs</span></li>
+                    <li class="list-group-item">Prize (&#36): <span>{{i.prize}}</span></li>
                 </ul>
-                <div class="card-body">
-                    <h6>
-                        <a class="card-link" href="{% url 'apply_jam' i.id %}">Details</a>
-                    </h6>
-                </div>
             </div>
             {% endfor %}
-
-           
-
         </div>
     </div>
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -18,7 +18,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
         <a class="navbar-brand" href="{% url 'developer_home' %}"><i class="fas fa-home"></i> Jamify</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -28,11 +27,10 @@
             <ul class="navbar-nav mr-auto">
                 <!-- Place your Navigation here if you wish to -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/artist_profile/">Profile</a>
+                    <a class="nav-link" href="{% url 'developer_home' %}">Home</a>
                 </li>
-                
                 <li class="nav-item">
-                    <a class="nav-link active" href="/view_jams/">View Upcoming Jams</a>
+                    <a class="nav-link active" href="{% url 'developer_view_jam' %}">Participated Jams</a>
                 </li>
             </ul>
             <ul class="navbar-nav mr-2">
@@ -47,7 +45,7 @@
     <div class="row">
         <div class="card m-2" style="width: 56rem;">
             <div class="card-header">
-                <h1>Upcoming Jams</h1>
+                <h1>Participated Jams</h1>
             </div>
         </div>        
     </div>
@@ -60,24 +58,24 @@
             {% for i in jams %}
             <div class="card m-2" style="width: 18rem;">
                 <div class="card-header">
-                    <h2>{{i.theme}}</h2>
+                    <h2>{{i.jam.theme}}</h2>
                 </div>
                 <div class="card-body">
                     <div class="card-title">
-                        <h4>{{i.studio.name}}</h4>
+                        <h4>{{i.jam.studio.name}}</h4>
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Start Date: <span>{{i.start_date}}</span></li>
-                    <li class="list-group-item">End Date: <span>{{i.end_date}}</span></li>
-                    <li class="list-group-item">Team Size: <span>{{i.team_size}} devs</span></li>
-                    <li class="list-group-item">Prize: <span>{{i.prize}} devs</span></li>
+                    <li class="list-group-item">Start Date: <span>{{i.jam.start_date}}</span></li>
+                    <li class="list-group-item">End Date: <span>{{i.jam.end_date}}</span></li>
+                    <li class="list-group-item">Prize (&#36): <span>{{i.jam.prize}}</span></li>
                 </ul>
-                <div class="card-body">
-                    <h6>                         <!--    url 'apply_jam' i.id  -->
+                <!-- <div class="card-body">
+                    <h6>                         
                         <a class="card-link" href="#">Details</a>
                     </h6>
-                </div>
+                </div>  
+            -->
             </div>
             {% endfor %}
 

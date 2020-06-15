@@ -7,10 +7,20 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+DEV_SKILLS = (
+    ("artist", "Artist"),
+    ("programmer","Programmer"),
+    ("sound_engineer","Sound Engineer"),
+    ("game_designer","Game Designer"),
+)
+
 
 class DevSkill(models.Model):
     developer = models.ForeignKey('Developer', models.DO_NOTHING, blank=True, null=True)
-    skill = models.ForeignKey('Skill', models.DO_NOTHING, blank=True, null=True)
+    skill = models.CharField(max_length=30, blank=True, null=True, choices=DEV_SKILLS)
+
+    def __str__(self):
+        return self.skill
 
 
 class Developer(models.Model):
@@ -36,14 +46,17 @@ class ImageStore(models.Model):
 class Jam(models.Model):
     theme = models.CharField(max_length=50, blank=True, null=True)
     team_size = models.IntegerField(blank=True, null=True)
-    start_date = models.DateTimeField(blank=True, null=True)
-    end_date = models.DateTimeField(blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
     prize = models.DecimalField(max_digits=11, decimal_places=2, blank=True, null=True)
     studio = models.ForeignKey('Studio', models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
         return self.theme
 
+class JamApplied(models.Model):
+    jam = models.ForeignKey(Jam, models.DO_NOTHING, blank=True, null=True)
+    developer = models.ForeignKey(Developer, models.DO_NOTHING, blank=True, null=True)
 
 class JamOrganizer(models.Model):
     jam = models.ForeignKey(Jam, models.DO_NOTHING, blank=True, null=True)
@@ -53,10 +66,6 @@ class JamOrganizer(models.Model):
 class JamTeam(models.Model):
     team = models.ForeignKey('Team', models.DO_NOTHING, blank=True, null=True)
     jam = models.ForeignKey(Jam, models.DO_NOTHING, blank=True, null=True)
-
-
-class Skill(models.Model):
-    skill = models.CharField(max_length=50, blank=True, null=True)
 
 
 class Studio(models.Model):
@@ -71,12 +80,15 @@ class Studio(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
-    dev_leader = models.ForeignKey(Developer, models.DO_NOTHING, related_name="dev_leader_to_dev", blank=True, null=True)
+    dev_1 = models.ForeignKey(Developer, models.DO_NOTHING, related_name="dev_1_to_dev", blank=True, null=True)
     dev_2 = models.ForeignKey(Developer, models.DO_NOTHING, related_name="dev_2_to_dev", blank=True, null=True)
     dev_3 = models.ForeignKey(Developer, models.DO_NOTHING, related_name="dev_3_to_dev", blank=True, null=True)
     dev_4 = models.ForeignKey(Developer, models.DO_NOTHING, related_name="dev_4_to_dev", blank=True, null=True)
     dev_5 = models.ForeignKey(Developer, models.DO_NOTHING, related_name="dev_5_to_dev", blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+        
 
 class SessionDeveloper(models.Model):
     developer = models.ForeignKey(Developer, models.DO_NOTHING, blank=True, null=True)

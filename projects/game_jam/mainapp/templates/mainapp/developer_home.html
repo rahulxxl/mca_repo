@@ -27,10 +27,10 @@
             <ul class="navbar-nav mr-auto">
                 <!-- Place your Navigation here if you wish to -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'developer_home' %}">home</a>
+                    <a class="nav-link active" href="{% url 'developer_home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'developer_view_jam' %}">View Upcoming Jams</a>
+                    <a class="nav-link" href="{% url 'developer_view_jam' %}">Participated Jams</a>
                 </li>
             </ul>
             <ul class="navbar-nav mr-2">
@@ -68,12 +68,11 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Start Date: <span>{{i.start_date}}</span></li>
                     <li class="list-group-item">End Date: <span>{{i.end_date}}</span></li>
-                    <li class="list-group-item">Team Size: <span>{{i.team_size}} devs</span></li>
-                    <li class="list-group-item">Prize: <span>{{i.prize}} devs</span></li>
+                    <li class="list-group-item">Prize (&#36): <span>{{i.prize}}</span></li>
                 </ul>
                 <div class="card-body">
                     <h6>
-                        <a class="card-link" href="{% url 'developer_apply_jam' i.id %}">Apply</a>
+                        <a class="card-link" href="{% url 'developer_apply_jam' i.id %}">View</a>
                     </h6>
                 </div>
             </div>

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+
 
 from . import forms
 from . import models
@@ -17,6 +19,8 @@ def all_view_jam(request):
 
 def developer_home(request):
     all_jams = models.Jam.objects.all()
+    # upcoming_jams = all_jams.filter()
+    
     jams = []
     for obj in all_jams:
         jams.append(obj)
@@ -25,19 +29,32 @@ def developer_home(request):
 
 
 def developer_view_jam(request):
-    all_jams = models.Jam.objects.all()
+    sessions = models.SessionDeveloper.objects.all()
+    session = sessions.last()
+    applied_jams = models.JamApplied.objects.all()
+    dev_applied_jams = applied_jams.filter(developer = session.developer)
     jams = []
-    for obj in all_jams:
+    for obj in dev_applied_jams:
+        # one_jam = {}
+        # one_jam["theme"] = obj.theme
+        # one_jam["start_date"] = obj.start_date
+        # one_jam["end_date"] = obj.end_date
+        # one_jam["prize"] = obj.prize
+        # one_jam["studio"]= obj.studio.name
         jams.append(obj)
 
     context = {"jams":jams,}
     return render(request, "mainapp/developer_view_jam.html", context)
 
 
-
-
 def developer_apply_jam(request, jam_id):
     temp = models.Jam.objects.get(id=jam_id)
+    flag_get = True     # Assume record Exists
+    try:
+        temp1 = models.JamApplied.objects.get(jam = temp)
+    except ObjectDoesNotExist:
+        flag_get = False
+
     context={
         "jam_id":jam_id,
         "theme":temp.theme,
@@ -45,12 +62,30 @@ def developer_apply_jam(request, jam_id):
         "start_date":temp.start_date.strftime("%d-%m-%Y"),
         "end_date":temp.end_date.strftime("%d-%m-%Y"),
         "prize":temp.prize,
+        "exists":flag_get,
     }
-    return render(request, "mainapp/jam_apply.html", context)
+    return render(request, "mainapp/developer_apply_jam.html", context)
+
+
+def confirm_apply_jam(request, jam_id):
+    applied_jam = models.Jam.objects.get(id=jam_id)
+    sessions = models.SessionDeveloper.objects.all()
+    session = sessions.last()
+    newJamApplied = models.JamApplied()
+    newJamApplied.jam = applied_jam
+    newJamApplied.developer = session.developer
+    newJamApplied.save()
+    context = {}
+    return render(request, 'mainapp/confirm_apply_jam.html', context)
 
 
 def  studio_home(request):
-    return render(request, 'mainapp/studio_home.html')
+    all_jams = models.Jam.objects.all()
+    jams = []
+    for obj in all_jams:
+        jams.append(obj)
+    context = {"jams":jams,}
+    return render(request, 'mainapp/studio_home.html', context)
 
 
 def studio_create_jam(request):
@@ -60,12 +95,16 @@ def studio_create_jam(request):
             data = form.cleaned_data
             obj = models.Jam(
                 theme=data["jam_title"],
-                team_size= data["team_size"],
+                team_size= None,
                 start_date=data["start_date"],
                 end_date=data["end_date"],
                 prize=data["prize"]
             )
+            sessions = models.SessionStudio.objects.all()
+            session = sessions.last()
+            obj.studio = session.studio
             obj.save()
+            print("Redirecting to Confirmation")
             return redirect('confirm_create_jam')
     else:
         form = forms.CreateJam()
@@ -74,15 +113,23 @@ def studio_create_jam(request):
 
 
 def studio_view_jam(request):
-    return render(request, 'mainapp/studio_view_jam.html')
+    sessions = models.SessionStudio.objects.all()
+    session = sessions.last()
+    all_jams = models.Jam.objects.all()
+    studio_jams = all_jams.filter(studio = session.studio)
+    jams = []
+    for obj in studio_jams:
+        jams.append(obj)
+    context = {"jams":jams,}
+    return render(request, 'mainapp/studio_view_jam.html', context)
+    
+
+def studio_update_jam(request):
+    return redirect("studio_view_jam")
 
 
 def confirm_create_jam(request):
     return render(request, 'mainapp/confirm_create_jam.html')
-
-
-
-
 
 
 def developer_login(request):
@@ -99,7 +146,7 @@ def developer_login(request):
                         session= models.SessionDeveloper()
                         session.developer = x
                         session.save()
-                        return redirect('developer_view_jam')
+                        return redirect('developer_home')
                     else:
                         messages.error(request, "username and password does not match")
                         return redirect("developer_login")

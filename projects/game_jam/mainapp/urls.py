@@ -8,7 +8,8 @@ urlpatterns = [
     path('developer_logout/', views.developer_logout,name="developer_logout"),
     path('developer_home/', views.developer_home, name ="developer_home"),
     path('developer_view_jam/', views.developer_view_jam, name ="developer_view_jam"),
-    path('developer_apply_jam/<int:jam_id>', views.developer_apply_jam, name="developer_apply_jam"),  
+    path('developer_apply_jam/<int:jam_id>', views.developer_apply_jam, name="developer_apply_jam"),
+    path('confirm_apply_jam/<int:jam_id>', views.confirm_apply_jam, name="confirm_apply_jam"),
 
     path('all_view_jam/', views.all_view_jam, name="all_view_jam"),
 
@@ -18,6 +19,8 @@ urlpatterns = [
     path('studio_home/', views.studio_home, name="studio_home"),
     path('studio_create_jam/', views.studio_create_jam, name="studio_create_jam"),
     path('studio_view_jam/', views.studio_view_jam, name="studio_view_jam"),
+    path('studio_update_jam/', views.studio_update_jam, name="studio_update_jam"),
+
 
     path('confirm_create_jam/', views.confirm_create_jam, name="confirm_create_jam"),
 
